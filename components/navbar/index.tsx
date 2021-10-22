@@ -15,7 +15,7 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
     ShowNotificationsMenuPopUp: false,
   });
 
-  const { picture } = useUser();
+  const { id } = useUser();
 
   const showUserMenu = (): void => {
     setState({
@@ -33,7 +33,7 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
         <Logo />
         <SearchBar />
         <div className="relative">
-          {state.isLoggedIn ? (
+          {id ? (
             <UserNavbarMenu showUserMenuPopUp={showUserMenu} />
           ) : (
             <CustomLink
