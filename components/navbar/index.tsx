@@ -6,6 +6,7 @@ import { SearchBar } from "../searchbar";
 import { UserNavbarMenu } from "../usernavbarmenu";
 import { Istate } from "./Istate";
 import { UserNavbarMenuPopUp } from "../usernavbarpopupmenu";
+import { NotificationNavbarMenuPopUp } from "../notificationnavbarpopupmenu";
 import { useUser } from "../../context";
 
 export const Navbar: FunctionComponent = (): JSX.Element => {
@@ -21,6 +22,15 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
     setState({
       ...state,
       ShowUserMenuPopUp: !state.ShowUserMenuPopUp,
+      ShowNotificationsMenuPopUp: false,
+    });
+  };
+
+  const showNotificationsMenu = (): void => {
+    setState({
+      ...state,
+      ShowNotificationsMenuPopUp: !state.ShowNotificationsMenuPopUp,
+      ShowUserMenuPopUp: false,
     });
   };
 
@@ -34,7 +44,10 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
         <SearchBar />
         <div className="relative">
           {id ? (
-            <UserNavbarMenu showUserMenuPopUp={showUserMenu} />
+            <UserNavbarMenu
+              showUserMenuPopUp={showUserMenu}
+              showNotificationsPopUp={showNotificationsMenu}
+            />
           ) : (
             <CustomLink
               href="/test"
@@ -43,6 +56,7 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
             />
           )}
           {state.ShowUserMenuPopUp && <UserNavbarMenuPopUp />}
+          {state.ShowNotificationsMenuPopUp && <NotificationNavbarMenuPopUp />}
         </div>
       </nav>
     </header>

@@ -19,7 +19,7 @@ export const UserNavbarMenu: FunctionComponent<IProps> = ({
         onClick={showNotificationsPopUp}
       />
       <div
-        className="transition duration-300 relative w-10 h-10 bg-white border-2 rounded-full cursor-pointer hover:border-green-400"
+        className="transition duration-300 relative w-10 h-10 bg-white border-2 rounded-full cursor-pointer hover:border-green-400 select-none"
         onClick={showUserMenuPopUp}
       >
         <Image

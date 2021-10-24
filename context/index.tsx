@@ -21,19 +21,25 @@ export const UserProvider: FunctionComponent = ({ children }): JSX.Element => {
   });
 
   const fetchUser = async (): Promise<void> => {
-    const request = await fetch("https://randomuser.me/api/");
-    const response = await request.json();
-    const user = response.results[0];
+    try {
+      const request = await fetch("https://randomuser.me/api/");
+      const response = await request.json();
+      const user = response.results[0];
 
-    setUser({
-      id: user.login.uuid,
-      picture: user.picture.large,
-      username: user.login.username,
-      firstname: user.name.first,
-      lastname: user.name.last,
-      email: user.email,
-      password: user.login.password,
-    });
+      setUser({
+        id: user.login.uuid,
+        picture: user.picture.large,
+        username: user.login.username,
+        firstname: user.name.first,
+        lastname: user.name.last,
+        email: user.email,
+        password: user.login.password,
+      });
+    }
+
+    catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {

@@ -4,3 +4,8 @@ export interface IProps {
   rightIcon?: React.ReactNode;
   text?: string;
 }
+
+export interface INotificationLinkProps extends IProps {
+  userAvatar: string;
+  videoThumbnail: string;
+}
