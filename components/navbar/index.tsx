@@ -40,7 +40,7 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
         className="relative sticky top-0 z-50 flex items-center justify-between w-full h-16 bg-green-300 p-4"
         role="navigation"
       >
-        <Logo />
+        <Logo color="white" />
         <SearchBar />
         <div className="relative">
           {id ? (
