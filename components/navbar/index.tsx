@@ -34,15 +34,23 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
     });
   };
 
+  const closePopUp = (): void => {
+    setState({
+      ...state,
+      ShowNotificationsMenuPopUp: false,
+      ShowUserMenuPopUp: false
+    });
+  }
+
   return (
-    <header>
+    <header className="sticky top-0 z-50" >
       <nav
-        className="relative sticky top-0 z-50 flex items-center justify-between w-full h-16 bg-green-300 p-4"
+        className="flex items-center justify-between space-x-2 w-full h-16 bg-green-300 p-2 lg:justify-between"
         role="navigation"
       >
-        <Logo color="white" />
+        <Logo color="white" size={28} />
         <SearchBar />
-        <div className="relative">
+        <div className="">
           {id ? (
             <UserNavbarMenu
               showUserMenuPopUp={showUserMenu}
@@ -50,13 +58,13 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
             />
           ) : (
             <CustomLink
-              href="/test"
+              href="/login"
               text="Sign In"
               leftIcon={<HiUserCircle />}
             />
           )}
-          {state.ShowUserMenuPopUp && <UserNavbarMenuPopUp />}
-          {state.ShowNotificationsMenuPopUp && <NotificationNavbarMenuPopUp />}
+          {state.ShowUserMenuPopUp && <UserNavbarMenuPopUp closePopUp={closePopUp} />}
+          {state.ShowNotificationsMenuPopUp && <NotificationNavbarMenuPopUp closePopup={closePopUp} />}
         </div>
       </nav>
     </header>

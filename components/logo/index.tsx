@@ -3,7 +3,10 @@ import Link from "next/link";
 import { SiReact } from "react-icons/si";
 import { IProps } from "./Iprops";
 
-export const Logo: FunctionComponent<IProps> = ({ color }): JSX.Element => {
+export const Logo: FunctionComponent<IProps> = ({
+  color,
+  size
+}): JSX.Element => {
   let textColor;
 
   if (color === "white") textColor = "text-white";
@@ -13,7 +16,7 @@ export const Logo: FunctionComponent<IProps> = ({ color }): JSX.Element => {
   return (
     <Link href="/">
       <a>
-        <SiReact className={`${textColor}`} size={50} />
+        <SiReact className={`${textColor}`} size={size} />
       </a>
     </Link>
   );

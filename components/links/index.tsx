@@ -28,7 +28,7 @@ export const UserNavBarMenuPopUpLink: FunctionComponent<IProps> = ({
 }): JSX.Element => {
   return (
     <Link href={href}>
-      <a className="group w-full flex items-center px-4 py-2 space-x-4 text-gray-600 hover:bg-green-300 hover:text-white">
+      <a className="group w-full flex items-center px-4 py-2 space-x-4 text-lg text-gray-600 hover:bg-green-300 hover:text-white md:text-base lg:text-base">
         <div className="group-hover:text-white">{leftIcon}</div>
         <p className="font-medium">{text}</p>
       </a>
@@ -48,22 +48,22 @@ export const NotificationPopUpMenuLink: FunctionComponent<INotificationLinkProps
 }): JSX.Element => {
   return (
     <Link href={href}>
-      <a className="flex items-center space-x-4 w-full p-2">
+      <a className="flex items-center space-x-2 w-full p-2 text-xs font-medium text-gray-500 select-none hover:bg-green-300 hover:text-white">
         <Image
           src={userAvatar}
           loader={({ src }) => src}
-          width={70}
-          height={70}
+          width={50}
+          height={50}
           className="rounded-full"
         />
-        <div className="w-full text-sm font-medium text-gray-500 px-1">
+        <div className="w-full px-1">
           <p>{text}</p>
         </div>
         <Image
           src={videoThumbnail}
           loader={({ src }) => src}
           width={100}
-          height={90}
+          height={80}
         />
       </a>
     </Link>
