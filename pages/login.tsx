@@ -1,23 +1,87 @@
 import React, { useState, useEffect } from "react";
 import { NextPage } from "next";
 import Head from "next/head"
+import Link from "next/link"
 import { Logo } from "../components/logo";
 import { FiUser, FiLock } from "react-icons/fi";
 import { CustomInput } from "../components/custominput";
+import { IProps as ICustomInputProps } from "../components/custominput/Iprops";
 import { PrimaryButton } from "../components/buttons"
+import { Validator } from "../utils/validator"
 
 interface Istate {
   username: string;
   password: string;
   fakeloading: boolean;
+  errors: {
+    username: string;
+    password: string;
+  }
 }
 
 const Login: NextPage = (): JSX.Element => {
   const [state, setState] = useState<Istate>({
     username: "",
     password: "",
+    errors: {
+      username: "",
+      password: ""
+    },
     fakeloading: false
   });
+
+  const inputs: Array<ICustomInputProps> = [
+    {
+      label: "username",
+      icon: <FiUser size={20} />,
+      name: "username",
+      value: state.username,
+      placeholder: "username",
+      type: "text",
+      maxLength: 32,
+      errorLabel: state.errors.username
+    },
+    {
+      label: "password",
+      link: {
+        href: "/",
+        text: "forgot password?",
+      },
+      icon: <FiLock size={20} />,
+      name: "password",
+      value: state.password,
+      placeholder: "password",
+      type: "password",
+      maxLength: 32,
+      errorLabel: state.errors.password,
+      displayEye: true,
+    }
+  ]
+
+  const validate = () => {
+    const { username, password } = state;
+
+    const fields = {
+      username,
+      password
+    };
+
+    let k: keyof typeof fields;
+
+    for (k in fields) {
+      const validator: Validator = new Validator(fields[k]);
+
+      if (validator.isEmpty()) {
+        setState({
+          ...state,
+          errors: {
+            ...state.errors,
+            [k]: `${k} cannot be empty`
+          }
+        })
+      }
+    }
+  }
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
@@ -28,18 +92,18 @@ const Login: NextPage = (): JSX.Element => {
     });
   };
 
-  const onSubmit = (): void => {
+  const onClean = (key: string) => {
     setState({
       ...state,
-      fakeloading: true
-    });
+      errors: {
+        ...state.errors,
+        [key]: ""
+      }
+    })
+  }
 
-    setTimeout(() => {
-      setState({
-        ...state,
-        fakeloading: false
-      });
-    }, 5000)
+  const onSubmit = (): void => {
+    validate();
   };
 
   return (
@@ -58,34 +122,35 @@ const Login: NextPage = (): JSX.Element => {
             </h2>
             <p className="text-gray-400 text-sm font-semibold">
               Dont you have an account?{" "}
-              <span className="text-green-300">Sign Up</span>
+              <Link href="/signup" >
+                <a className="text-green-300">Sign Up</a>
+              </Link>
             </p>
           </div>
           <div className="w-full space-y-8 ">
-            <CustomInput
-              label="username"
-              icon={<FiUser size={20} />}
-              name="username"
-              value={state.username}
-              placeholder="username"
-              type="text"
-              maxLength={32}
-              onChange={onChange}
-            />
-            <CustomInput
-              label="password"
-              link={{
-                href: "/",
-                text: "forgot password?",
-              }}
-              icon={<FiLock size={20} />}
-              name="password"
-              value={state.password}
-              placeholder="password"
-              type="password"
-              maxLength={32}
-              onChange={onChange}
-            />
+            {
+              inputs.map((input, index): JSX.Element => {
+                return (
+                  <CustomInput
+                    key={index}
+                    icon={input.icon}
+                    label={input.label}
+                    link={input.link}
+                    name={input.name}
+                    type={input.type}
+                    value={input.value}
+                    placeholder={input.placeholder}
+                    maxLength={input.maxLength}
+                    errorLabel={input.errorLabel}
+                    displayEye={input.displayEye}
+                    onChange={onChange}
+                    onFocus={() => {
+                      onClean(input.name)
+                    }}
+                  />
+                )
+              })
+            }
           </div>
           <PrimaryButton text="Login" onClick={onSubmit} />
         </div>

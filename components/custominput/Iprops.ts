@@ -9,6 +9,9 @@ export interface IProps {
   type: "text" | "password";
   placeholder?: string;
   maxLength?: number;
+  errorLabel?: string;
   icon: React.ReactNode;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  displayEye?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus?: (event?: React.FocusEvent<HTMLInputElement>) => void;
 }

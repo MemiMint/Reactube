@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import Link from "next/link";
+import { FiEye, FiEyeOff } from "react-icons/fi"
 import { IProps } from "./Iprops";
 
 export const CustomInput: FunctionComponent<IProps> = ({
@@ -10,18 +11,24 @@ export const CustomInput: FunctionComponent<IProps> = ({
   value,
   type,
   placeholder,
+  errorLabel,
   maxLength,
+  displayEye,
   onChange,
+  onFocus
 }): JSX.Element => {
+
+  const [_type, setType] = useState<string>(type);
+
   const Label = (): JSX.Element => {
-    {
-      /* label containers */
-    }
     return (
       <div className="flex items-center justify-between mb-1">
         {" "}
-        <label className="text-xs text-gray-400 font-semibold">{label}</label>
-        {link && (
+        <label htmlFor="username" className={`text-xs ${errorLabel ? "text-red-500" : "text-gray-400"} font-semibold`}>{label}</label>
+        {
+          errorLabel && <label htmlFor="error" className="text-xs text-red-500 font-semibold">{errorLabel}</label>
+        }
+        {(link && !errorLabel) && (
           <Link href={link.href}>
             <a className="text-xs text-green-300 font-semibold">{link.text}</a>
           </Link>
@@ -29,12 +36,22 @@ export const CustomInput: FunctionComponent<IProps> = ({
       </div>
     );
   };
-  //mt-4
+
+  const Eye = (): JSX.Element => {
+    return (
+      <div className={`w-10 flex items-center justify-center ${errorLabel ? "bg-red-500" : "bg-green-300"} text-white select-none cursor-pointer`}>
+        {
+          _type === "text" ? <FiEye size={20} onClick={() => setType("password")} /> : <FiEyeOff size={20} onClick={() => setType("text")} />
+        }
+      </div>
+    )
+  }
+
   return (
     <div className="w-full">
       <Label />
-      <div className="flex w-full h-10 border-2 border-green-300">
-        <div className="w-10 flex items-center justify-center bg-green-300 text-white">
+      <div className={`flex w-full h-10 border-2 ${errorLabel ? "border-red-500" : "border-green-300"}`}>
+        <div className={`w-10 flex items-center justify-center ${errorLabel ? "bg-red-500" : "bg-green-300"} text-white`}>
           {icon}
         </div>
         <input
@@ -42,10 +59,14 @@ export const CustomInput: FunctionComponent<IProps> = ({
           name={name}
           value={value}
           placeholder={placeholder}
-          type={type}
+          type={_type}
           maxLength={maxLength}
           onChange={onChange}
+          onFocus={onFocus}
         />
+        {
+          displayEye && <Eye />
+        }
       </div>
     </div>
   );
