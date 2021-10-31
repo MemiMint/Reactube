@@ -1,5 +1,5 @@
 export interface IProps {
-  label: string;
+  label?: string;
   link?: {
     href: string;
     text: string;

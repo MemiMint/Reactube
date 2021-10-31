@@ -183,7 +183,7 @@ const SignUp: NextPage = (): JSX.Element => {
                         <h2 className="text-xl font-semibold text-gray-500 antialiased">
                             Create an account
                         </h2>
-                        <p className="text-gray-400 text-sm font-semibold">
+                        <p className="text-gray-400 text-sm">
                             Already have an account?{" "}
                             <Link href="/login" >
                                 <a className="text-green-300">Sign In</a>

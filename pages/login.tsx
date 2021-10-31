@@ -44,7 +44,7 @@ const Login: NextPage = (): JSX.Element => {
     {
       label: "password",
       link: {
-        href: "/",
+        href: "/forgotpassword",
         text: "forgot password?",
       },
       icon: <FiLock size={20} />,
@@ -120,7 +120,7 @@ const Login: NextPage = (): JSX.Element => {
             <h2 className="text-xl font-semibold text-gray-500 antialiased">
               Login to your account
             </h2>
-            <p className="text-gray-400 text-sm font-semibold">
+            <p className="text-gray-400 text-sm">
               Dont you have an account?{" "}
               <Link href="/signup" >
                 <a className="text-green-300">Sign Up</a>
