@@ -3,8 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IProps, INotificationLinkProps } from "./IProps";
 
-
-export const CustomLink: FunctionComponent<IProps> = ({
+export const PrimaryLink: FunctionComponent<IProps> = ({
   href,
   text,
   leftIcon,
@@ -13,6 +12,23 @@ export const CustomLink: FunctionComponent<IProps> = ({
   return (
     <Link href={href}>
       <a className="flex transition duration-300 cursor-pointer items-center text-white text-lg p-2 font-medium border-2 border-white space-x-2 hover:bg-white hover:text-green-300">
+        <div>{leftIcon}</div>
+        <p>{text}</p>
+        <div>{rightIcon}</div>
+      </a>
+    </Link>
+  );
+};
+
+export const SecondaryLink: FunctionComponent<IProps> = ({
+  href,
+  text,
+  leftIcon,
+  rightIcon,
+}): JSX.Element => {
+  return (
+    <Link href={href}>
+      <a className="transition duration-300 flex items-center justify-center w-40 h-10 bg-blue-500 text-white text-center hover:bg-blue-600">
         <div>{leftIcon}</div>
         <p>{text}</p>
         <div>{rightIcon}</div>
@@ -40,32 +56,29 @@ export const UserNavBarMenuPopUpLink: FunctionComponent<IProps> = ({
 //testing user avatar: https://yt3.ggpht.com/QprPeK62mqF8JF3SesJ7cBq40UuI5L6bEbkIQwcZwrm2kg_QA_6ifiSInuykgmkCDplz8AZE43w=s48-c-k-c0x00ffffff-no-nd-rj
 //testing video thumbnail: https://i.ytimg.com/vi/wL2ylkbNVqU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2OQpM_abv3TMlY7R8M8lGHwrqow
 
-export const NotificationPopUpMenuLink: FunctionComponent<INotificationLinkProps> = ({
-  userAvatar,
-  href,
-  text,
-  videoThumbnail
-}): JSX.Element => {
-  return (
-    <Link href={href}>
-      <a className="flex items-center space-x-2 w-full p-2 text-xs font-medium text-gray-500 select-none hover:bg-green-300 hover:text-white">
-        <Image
-          src={userAvatar}
-          loader={({ src }) => src}
-          width={50}
-          height={50}
-          className="rounded-full"
-        />
-        <div className="w-full px-1">
-          <p>{text}</p>
-        </div>
-        <Image
-          src={videoThumbnail}
-          loader={({ src }) => src}
-          width={100}
-          height={80}
-        />
-      </a>
-    </Link>
-  )
-}
+export const NotificationPopUpMenuLink: FunctionComponent<INotificationLinkProps> =
+  ({ userAvatar, href, text, videoThumbnail }): JSX.Element => {
+    return (
+      <Link href={href}>
+        <a className="flex items-center space-x-2 w-full p-2 text-xs font-medium text-gray-500 select-none hover:bg-green-300 hover:text-white">
+          <Image
+            src={userAvatar}
+            loader={({ src }) => src}
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
+          <div className="w-full px-1">
+            <p>{text}</p>
+          </div>
+          <Image
+            src={videoThumbnail}
+            loader={({ src }) => src}
+            width={100}
+            height={80}
+          />
+        </a>
+      </Link>
+    );
+  };
+

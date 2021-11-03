@@ -1,7 +1,7 @@
 import React, { useState, FunctionComponent } from "react";
 import { HiUserCircle } from "react-icons/hi";
 import { Logo } from "../logo";
-import { CustomLink } from "../links";
+import { PrimaryLink } from "../links";
 import { SearchBar } from "../searchbar";
 import { UserNavbarMenu } from "../usernavbarmenu";
 import { Istate } from "./Istate";
@@ -38,12 +38,12 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
     setState({
       ...state,
       ShowNotificationsMenuPopUp: false,
-      ShowUserMenuPopUp: false
+      ShowUserMenuPopUp: false,
     });
-  }
+  };
 
   return (
-    <header className="sticky top-0 z-50" >
+    <header className="sticky top-0 z-50">
       <nav
         className="flex items-center justify-between space-x-2 w-full h-16 bg-green-300 p-2 lg:justify-between"
         role="navigation"
@@ -57,14 +57,18 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
               showNotificationsPopUp={showNotificationsMenu}
             />
           ) : (
-            <CustomLink
+            <PrimaryLink
               href="/login"
               text="Sign In"
               leftIcon={<HiUserCircle />}
             />
           )}
-          {state.ShowUserMenuPopUp && <UserNavbarMenuPopUp closePopUp={closePopUp} />}
-          {state.ShowNotificationsMenuPopUp && <NotificationNavbarMenuPopUp closePopup={closePopUp} />}
+          {state.ShowUserMenuPopUp && (
+            <UserNavbarMenuPopUp closePopUp={closePopUp} />
+          )}
+          {state.ShowNotificationsMenuPopUp && (
+            <NotificationNavbarMenuPopUp closePopup={closePopUp} />
+          )}
         </div>
       </nav>
     </header>
