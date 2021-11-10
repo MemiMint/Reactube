@@ -1,13 +1,16 @@
-import type { NextPage } from "next";
+import React from "react";
+import { NextPage } from "next";
 import Head from "next/head";
-import { Navbar } from "../components/navbar";
-import { VideoCard } from "../components/videocard";
-import { IProps } from "../components/videocard/Iprops";
+import { useUser } from "../../../context";
+import { Navbar } from "../../../components/navbar";
+import { ChannelLayout } from "../../../components/channellayout";
+import { VideoCard } from "../../../components/videocard";
+import { IProps } from "../../../components/videocard/Iprops";
 
 const fakeData: Array<IProps> = [
   {
     thumbnail:
-      "https://i.ytimg.com/an_webp/rfscVS0vtbw/mqdefault_6s_480x270.webp?du=3000&sqp=CNjupowG&rs=AOn4CLAhW51Ttd5Vd9PoGSWQbJmnL4R2og",
+      "https://i.ytimg.com/an_webp/HYv55DhgTuA/mqdefault_6s.webp?du=3000&sqp=CID_pIwG&rs=AOn4CLDo2a_UZqIRBMIKyvALCVAwRO0MUw",
     title: "Build the best blog app with react!",
     date: "3 years ago",
     duration: "1:20:32",
@@ -47,35 +50,39 @@ const fakeData: Array<IProps> = [
   },
 ];
 
-const Home: NextPage = (): JSX.Element => {
+const Videos: NextPage = (): JSX.Element => {
+  const { username } = useUser();
+
   return (
-    <div>
+    <>
       <Head>
-        <title>ReactTube</title>
+        <title>{username} - Videos</title>
       </Head>
       <Navbar />
-      <main>
-        <section
-          className="w-full flex-col items-center p-4
+      <ChannelLayout>
+        <main>
+          <section
+            className="w-full flex-col items-center p-4
                           md:flex md:flex-row md:flex-wrap lg:flex lg:flex-row lg:flex-wrap"
-        >
-          {fakeData.map((video, index): JSX.Element => {
-            return (
-              <VideoCard
-                key={index}
-                thumbnail={video.thumbnail}
-                title={video.title}
-                views={video.views}
-                date={video.date}
-                duration={video.duration}
-                channel={video.channel}
-              />
-            );
-          })}
-        </section>
-      </main>
-    </div>
+          >
+            {fakeData.map((video, index): JSX.Element => {
+              return (
+                <VideoCard
+                  key={index}
+                  thumbnail={video.thumbnail}
+                  title={video.title}
+                  views={video.views}
+                  date={video.date}
+                  duration={video.duration}
+                  channel={video.channel}
+                />
+              );
+            })}
+          </section>
+        </main>
+      </ChannelLayout>
+    </>
   );
 };
 
-export default Home;
+export default Videos;

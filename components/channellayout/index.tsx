@@ -1,10 +1,11 @@
 import React, { FunctionComponent } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { useUser } from "../../context";
 import { SecondaryLink } from "../links";
 
 export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
-  const { picture, username } = useUser();
+  const { id, picture, username } = useUser();
 
   const Wallpaper = (): JSX.Element => {
     return (
@@ -29,19 +30,19 @@ export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
     }> = [
       {
         text: "Main Page",
-        href: "/",
+        href: "/channel/2021",
       },
       {
         text: "Videos",
-        href: "/",
+        href: "/channel/2021/videos",
       },
       {
         text: "Playlist",
-        href: "/",
+        href: "/channel/2021/playlists",
       },
       {
         text: "About",
-        href: "/",
+        href: "/channel/2021/about",
       },
     ];
 
@@ -83,6 +84,8 @@ export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
     };
 
     const Tabs = (): JSX.Element => {
+      const router = useRouter();
+
       return (
         <div className="w-full mt-4 flex justify-between md:justify-start md:space-x-16 lg:space-x-16 lg:justify-start">
           {tabs.map((tab, index): JSX.Element => {
@@ -90,7 +93,9 @@ export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
               <a
                 key={index}
                 href={tab.href}
-                className="border-b-2 border-gray-500 text-gray-500 font-medium text-sm px-2 py-2 md:text-lg lg:text-lg"
+                className={`${
+                  router.asPath === tab.href ? "border-b-2 border-gray-500" : ""
+                } text-gray-500 font-medium text-sm px-2 py-2 md:text-lg lg:text-lg`}
               >
                 {tab.text}
               </a>
