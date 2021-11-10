@@ -1,7 +1,14 @@
 import React, { FunctionComponent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { IProps, INotificationLinkProps } from "./IProps";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaDiscord,
+  FaReddit
+} from "react-icons/fa";
+import { IProps, INotificationLinkProps, ISocialLinkProps } from "./IProps";
 
 export const PrimaryLink: FunctionComponent<IProps> = ({
   href,
@@ -82,3 +89,36 @@ export const NotificationPopUpMenuLink: FunctionComponent<INotificationLinkProps
     );
   };
 
+export const SocialLink: FunctionComponent<ISocialLinkProps> = ({
+  href,
+  social
+}): JSX.Element => {
+  let icon: React.ReactNode;
+
+  switch (social) {
+    case "Facebook":
+      icon = <FaFacebook size={30} color="#4267b2" />
+      break;
+    case "Instagram":
+      icon = <FaInstagram size={30} color="#5b51d8" />
+      break;
+    case "Twitter":
+      icon = <FaTwitter size={30} color="#1da1f2" />
+      break;
+    case "Discord":
+      icon = <FaDiscord size={30} color="#738adb" />
+      break;
+    case "Reddit":
+      icon = <FaReddit size={30} color="#f77737" />
+      break;
+  }
+
+  return (
+    <Link href={href} >
+      <a className="flex flex-col items-center justify-center space-y-1 text-sm font-medium text-gray-600">
+        {icon}
+        <p>{social}</p>
+      </a>
+    </Link>
+  )
+}
