@@ -1,52 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image"
-import { useUser } from "../../context"
-import { FiThumbsUp, FiThumbsDown } from "react-icons/fi"
+import Image from "next/image";
+import ReactPlayer from "react-player";
+import { useUser } from "../../context";
+import {
+  FiThumbsUp,
+  FiThumbsDown,
+  FiPlay,
+  FiPause,
+  FiVolume,
+} from "react-icons/fi";
+import { BiFullscreen } from "react-icons/bi";
 import { Navbar } from "../../components/navbar";
 
 const Watch: NextPage = (): JSX.Element => {
+  const [isPlay, setIsPlay] = useState<boolean>(false);
+  const [currentSeek, setCurrentSeek] = useState<number>(0);
+  const [volumeBar, setVolumeBar] = useState<number>(0);
+  const [volume, setVolume] = useState<number>(0);
+  const [totalDurationOfVideo, setTotalDurationOfVideo] = useState<number>(0);
+  const [muted, setMuted] = useState<boolean>(false);
 
-    const { username, picture } = useUser()
+  const hostVideo = React.createRef<any>();
 
-    return (
-        <div className="w-screen h-screen">
-            <Navbar />
-            <div className="w-full h-2/5 bg-black" >
+  const handleVolumeChange = (e: any): void => {
+    setVolume(e.target.value / 100);
+    setVolumeBar(e.target.value / 100);
+  };
+
+  const handleOnProgress = (e: any) => {
+    setCurrentSeek(e.target.value);
+    hostVideo.current.seekTo(e.target.value);
+  };
+
+  const handlePlay = () => {
+    if (totalDurationOfVideo === 0)
+      setTotalDurationOfVideo(hostVideo.current.getDuration());
+    setIsPlay(true);
+  };
+
+  const handlePuse = () => {
+    setIsPlay(false);
+  };
+
+  return (
+    <div className="w-screen h-screen">
+      <Navbar />
+      <div className="relative w-full h-3/5 bg-red-500">
+        <ReactPlayer
+          url="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4"
+          width="100%"
+          height="100%"
+        />
+        <div className="absolute top-0 right-0 w-full h-full flex flex-col justify-end">
+          <div className="w-full flex items-center justify-between h-auto bg-black p-2">
+            <div className="flex text-white space-x-2">
+              <FiPlay size={30} />
+              <FiVolume size={30} />
             </div>
-            <div className="mt-2 space-y-2 px-2 h-auto border-b border-gray-300">
-                <h1 className="text-base text-black font-semibold">Bring Me The Horizon - Drown (Sewerslvt Remix)</h1>
-                <p className="text-sm text-gray-600">553,225 views • 10 may. 2020</p>
-                <div className="flex p-2 space-x-4 justify-end">
-                    <div className="flex items-center space-x-2 text-sm">
-                        <FiThumbsUp size={20} />
-                        <p>500</p>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                        <FiThumbsDown size={20} />
-                        <p>500</p>
-                    </div>
-                </div>
+            <div className="flex text-white">
+              <BiFullscreen size={30} />
             </div>
-            <div className="mt-4 p-2 w-full flex items-center justify-between border-b border-gray-300">
-                <div className="flex space-x-2">
-                    <Image
-                        loader={({ src }) => src}
-                        src={picture}
-                        width={50}
-                        height={50}
-                        className="rounded-full"
-                    />
-                    <div>
-                        <p className="text-sm text-gray-600 font-medium">{username}</p>
-                        <p className="text-sm text-gray-500">53.3k subscribers</p>
-                    </div>
-                </div>
-                <div className="p-2 bg-green-300 text-white">Subscribe</div>
-            </div>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 };
 
 export default Watch;

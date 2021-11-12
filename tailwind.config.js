@@ -5,7 +5,11 @@ module.exports = {
   ],
   darkMode: false,
   theme: {
-    extend: {},
+    extend: {
+      padding: {
+        "fluid-video": "56.25%",
+      },
+    },
   },
   variants: {
     extend: {
