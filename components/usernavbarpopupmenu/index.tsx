@@ -1,10 +1,10 @@
 import React, { FunctionComponent } from "react";
-import Image from "next/image";
 import { HiUserCircle, HiVideoCamera, HiUpload } from "react-icons/hi";
 import { FaTv } from "react-icons/fa";
 import { BsX } from "react-icons/bs";
 import { UserNavBarMenuPopUpLink } from "../links";
 import { useUser } from "../../context";
+import { UserPicture } from "../userpicture"
 import { IProps } from "./Iprops";
 
 export const UserNavbarMenuPopUp: FunctionComponent<IProps> = ({
@@ -49,15 +49,12 @@ export const UserNavbarMenuPopUp: FunctionComponent<IProps> = ({
       <div className="w-full flex flex-col items-center p-2 space-y-2 border-b border-gray-100
                      md:flex md:flex-row md:items-center md:space-x-4 md:px-4 md:py-2 lg:flex lg:flex-row lg:items-center lg:space-x-4 lg:px-4 lg:py-2"
       >
-        <div className="flex items-center justify-center rounded-full h-auto border-2 border-green-300" >
-          <Image
-            src={picture}
-            loader={({ src }) => src}
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
-        </div>
+        <UserPicture 
+          picture={picture} 
+          width={60}
+          height={60}
+          border 
+        />
         <div className="text-center md:text-justify" >
           <p className="text-lg font-semibold text-gray-500 md:text-base lg:text-base">{username}</p>
           <p className="text-xs text-gray-400">{email}</p>

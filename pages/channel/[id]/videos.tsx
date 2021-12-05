@@ -24,7 +24,7 @@ const fakeData: Array<IProps> = [
   {
     thumbnail:
       "https://i.ytimg.com/an_webp/7o6m_TwVS9Y/mqdefault_6s.webp?du=3000&sqp=CIrlpowG&rs=AOn4CLAEGTDKw-QVjSWZFXcXsG-k75uCCQ",
-    title: "Mi madre se puso a llorar cuando me fui al atletico madrid",
+    title: "Mi madre se puso a llorar cuando",
     duration: "8:08",
     views: "553k",
     date: "8 months ago",
@@ -62,8 +62,8 @@ const Videos: NextPage = (): JSX.Element => {
       <ChannelLayout>
         <main>
           <section
-            className="w-full flex-col items-center p-4
-                          md:flex md:flex-row md:flex-wrap lg:flex lg:flex-row lg:flex-wrap"
+            className="w-full flex-col items-center p-4 space-x-4
+                          md:flex md:items-center md:flex-row md:flex-wrap lg:flex lg:flex-row lg:flex-wrap lg:items-center"
           >
             {fakeData.map((video, index): JSX.Element => {
               return (

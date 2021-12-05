@@ -1,3 +1,5 @@
+//class to validate field inputs
+
 export class Validator {
     private value!: string;
     private minLength?: number;

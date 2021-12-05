@@ -6,7 +6,7 @@ import { Logo } from "../components/logo";
 import { FiUser, FiLock } from "react-icons/fi";
 import { CustomInput } from "../components/custominput";
 import { IProps as ICustomInputProps } from "../components/custominput/Iprops";
-import { PrimaryButton } from "../components/buttons"
+import { LongButton } from "../components/buttons"
 import { Validator } from "../utils/validator"
 
 interface Istate {
@@ -152,7 +152,7 @@ const Login: NextPage = (): JSX.Element => {
               })
             }
           </div>
-          <PrimaryButton text="Login" onClick={onSubmit} />
+          <LongButton text="Login" onClick={onSubmit} />
         </div>
       </div>
     </>

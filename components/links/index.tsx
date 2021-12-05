@@ -8,6 +8,7 @@ import {
   FaDiscord,
   FaReddit
 } from "react-icons/fa";
+import { UserPicture } from "../userpicture"
 import { IProps, INotificationLinkProps, ISocialLinkProps } from "./IProps";
 
 export const PrimaryLink: FunctionComponent<IProps> = ({
@@ -68,12 +69,10 @@ export const NotificationPopUpMenuLink: FunctionComponent<INotificationLinkProps
     return (
       <Link href={href}>
         <a className="flex items-center space-x-2 w-full p-2 text-xs font-medium text-gray-500 select-none hover:bg-green-300 hover:text-white">
-          <Image
-            src={userAvatar}
-            loader={({ src }) => src}
-            width={50}
-            height={50}
-            className="rounded-full"
+          <UserPicture
+            picture={userAvatar}
+            width={60}
+            height={60}
           />
           <div className="w-full px-1">
             <p>{text}</p>

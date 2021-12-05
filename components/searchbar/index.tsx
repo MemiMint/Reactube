@@ -25,7 +25,7 @@ export const SearchBar: FunctionComponent = (): JSX.Element => {
   return (
     <div className="flex items-center w-3/6 h-8 space-x-2 lg:w-2/5 lg:h-10">
       <input
-        className="w-full h-full border-none bg-white rounded-sm p-2 outline-none placeholder-gray-300 text-xs text-gray-400 font-medium lg:text-sm"
+        className="w-full h-full border-none bg-white rounded-sm p-2 outline-none placeholder-gray-300 text-xs text-gray-600 font-medium lg:text-sm"
         placeholder="Search..."
         name="search"
         value={state.search}

@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import Image from "next/image";
 import { FiEye, FiClock, FiPlayCircle } from "react-icons/fi";
+import { UserPicture } from "../userpicture"
 import { IProps } from "./Iprops";
 
 const Label: FunctionComponent = ({ children }): JSX.Element => {
@@ -25,7 +26,7 @@ export const ThumbnailVideoCard: FunctionComponent<IProps> = ({
 
   const ImageContainer: FunctionComponent = ({ children }): JSX.Element => {
     return (
-      <div className="relative relative w-64 h-60 cursor-pointer">
+      <div className="relative w-64 h-60 cursor-pointer">
         <Image
           loader={({ src }) => src}
           src={thumbnail}
@@ -46,12 +47,10 @@ export const ThumbnailVideoCard: FunctionComponent<IProps> = ({
                   md:group-hover:flex md:hidden lg:hidden lg:group-hover:flex"
       >
         <Label>
-          <Image
-            loader={({ src }) => src}
-            src={channel.picture}
+          <UserPicture 
+            picture={channel.picture}
             width={25}
             height={25}
-            className="rounded-full"
           />
           <p>{channel.name}</p>
         </Label>
@@ -91,7 +90,7 @@ export const VideoCard: FunctionComponent<IProps> = ({
   date,
 }): JSX.Element => {
   return (
-    <div className="group transition duration-300 w-80 h-auto my-2 p-2 rounded-md cursor-pointer hover:bg-green-300">
+    <div className="group transition bg-red-400 duration-300 w-80 h-80 h-auto p-2 rounded-md cursor-pointer hover:bg-green-300">
       <div className="relative">
         <Image
           loader={({ src }) => src}
@@ -109,13 +108,11 @@ export const VideoCard: FunctionComponent<IProps> = ({
         </div>
       </div>
       <div className="flex space-x-2">
-        <div className="relative w-8 h-8 bg-white rounded-full select-none lg:w-10 lg:h-10">
-          <Image
-            loader={({ src }) => src}
-            src={channel.picture}
-            layout="fill"
-            objectFit="cover"
-            className="rounded-full"
+        <div>
+          <UserPicture
+            picture={channel.picture}
+            width={40}
+            height={40}
           />
         </div>
         <div className="flex-1">

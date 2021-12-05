@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { useUser } from "../../context";
+import { UserPicture } from "../userpicture"
 import { SecondaryLink } from "../links";
 
 export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
@@ -52,17 +53,11 @@ export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
           className="w-full flex flex-col items-center justify-center mt-2 space-y-4
                         md:flex-row md:space-x-4 md:justify-start lg:flex-row lg:space-x-4 lg:justify-start"
         >
-          <div
-            className="relative w-16 h-16 bg-red-300 ring-4 ring-green-300 rounded-full
-                         md:w-20 md:h-20 lg:w-20 lg:h-20"
-          >
-            <Image
-              loader={({ src }) => src}
-              src={picture}
-              layout="fill"
-              className="rounded-full"
-            />
-          </div>
+          <UserPicture
+            picture ={picture}
+            width={80}
+            height={80}
+          />
           <div className="space-y-1 text-center md:text-left lg:text-left">
             <h2 className="text-base font-semibold text-gray-700 md:text-lg lg:text-lg">
               {username}

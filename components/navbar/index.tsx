@@ -45,7 +45,7 @@ export const Navbar: FunctionComponent = (): JSX.Element => {
   return (
     <header className="sticky top-0 z-50">
       <nav
-        className="flex items-center justify-between space-x-2 w-full h-16 bg-green-300 p-2 lg:justify-between"
+        className="flex items-center justify-between shadow-md space-x-2 w-full h-16 bg-green-300 p-2 lg:justify-between"
         role="navigation"
       >
         <Logo color="white" size={28} />

@@ -6,7 +6,7 @@ import { FiUser, FiLock, FiMail } from "react-icons/fi"
 import { Logo } from "../components/logo";
 import { CustomInput } from "../components/custominput";
 import { IProps as ICustomInputProps } from "../components/custominput/Iprops";
-import { PrimaryButton } from "../components/buttons";
+import { LongButton } from "../components/buttons";
 import { Validator } from "../utils/validator";
 
 interface IState {
@@ -215,7 +215,7 @@ const SignUp: NextPage = (): JSX.Element => {
                         }
                     </div>
                     <div className="w-full mt-4" >
-                        <PrimaryButton text="Sign Up" onClick={onSubmit} />
+                        <LongButton text="Sign Up" onClick={onSubmit} />
                     </div>
                 </div>
             </div>

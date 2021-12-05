@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { FiMail } from "react-icons/fi";
 import { CustomInput } from "../components/custominput";
-import { PrimaryButton } from "../components/buttons";
+import { LongButton } from "../components/buttons";
 import { Validator } from "../utils/validator";
 
 const ForgotPassword: NextPage = (): JSX.Element => {
@@ -73,7 +73,7 @@ const ForgotPassword: NextPage = (): JSX.Element => {
               onChange={onChange}
               onFocus={() => setError("")}
             />
-            <PrimaryButton text="Send Email" onClick={onSubmit} />
+            <LongButton text="Send Email" onClick={onSubmit} />
           </div>
         </div>
       </div>
