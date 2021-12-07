@@ -4,31 +4,40 @@ import { useUser } from "../../context"
 import { UserPicture } from "../userpicture"
 import { ShortButton } from "../buttons"
 import { IResizableTextArea, ICommentOperations, IProps } from "./IProps"
+import { IResizableTextAreaState, IState } from "./IState"
 
 const ResizableTextArea: FunctionComponent<IResizableTextArea> = ({
     value,
     onChange,
     onFocus
 }): JSX.Element => {
-    const [rows, setRows] = useState<number>(1);
-    const [minRows] = useState<number>(1);
-    const [maxRows] = useState<number>(100);
+    const [state, setState] = useState<IResizableTextAreaState>({
+        rows: 1,
+        minRows: 1,
+        maxRows: 100
+    });
+
     
     const handleRows = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
         const textareaLineHight = 24;
         const previousRows = event.target.rows;
         
-        event.target.rows = minRows;    
+        event.target.rows = state.minRows;    
         
         const currentRows = ~~(event.target.scrollHeight / textareaLineHight);
 
         if (currentRows === previousRows) event.target.rows = currentRows;
 
-        else if (currentRows === maxRows) {
-            event.target.rows = maxRows;
+        else if (currentRows === state.maxRows) {
+            event.target.rows = state.maxRows;
         }
 
-        setRows(currentRows < maxRows ? currentRows : maxRows);
+        const rows = currentRows < state.maxRows ? currentRows : state.maxRows;
+
+        setState({
+            ...state,
+            rows
+        })
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -38,7 +47,7 @@ const ResizableTextArea: FunctionComponent<IResizableTextArea> = ({
 
     return (
         <textarea
-            rows={rows}
+            rows={state.rows}
             className="w-full overflow-none overscroll-none h-auto outline-none p-2 text-sm text-gray-600 placeholder-gray-400 font-medium border-b border-gray-300 resize-none focus:border-black"
             placeholder="add a new comment"
             name="comment"
@@ -69,14 +78,26 @@ export const CommentInput: FunctionComponent<IProps> = ({
     onSubmit,
     orderBy
 }): JSX.Element => {
-    const [comment, setComment] = useState<string>("");
-    const [showCommentOperations, setShowCommentOperations] = useState<boolean>(false);
+    const [state, setState] = useState<IState>({
+        comment: "",
+        showCommentOperations: false
+    })
 
     const { picture } = useUser();
 
     const onChange = (event:React.ChangeEvent<HTMLTextAreaElement>): void => {
         const { value } = event.target;
-        setComment(value);
+        setState({
+            ...state,
+            comment: value
+        });
+    }
+
+    const toggleFocus = (): void => {
+        setState({
+            ...state,
+            showCommentOperations: !state.showCommentOperations
+        });
     }
 
     return (
@@ -95,12 +116,12 @@ export const CommentInput: FunctionComponent<IProps> = ({
                     height={40}
                 />
                 <ResizableTextArea
-                    value={comment}
+                    value={state.comment}
                     onChange={onChange}
-                    onFocus={() => setShowCommentOperations(true)}
+                    onFocus={toggleFocus}
                 />
             </div>
-            {showCommentOperations && <CommentOperations cancel={() => setShowCommentOperations(false)} onSubmit={onSubmit} />}
+            {state.showCommentOperations && <CommentOperations cancel={() => setState({...state, showCommentOperations: false})} onSubmit={onSubmit} />}
         </div>
     )
 }

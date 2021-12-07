@@ -2,6 +2,7 @@ import React, { FunctionComponent, useState } from "react";
 import Link from "next/link";
 import { FiEye, FiEyeOff } from "react-icons/fi"
 import { IProps } from "./Iprops";
+import { IState } from "./IState"
 
 export const CustomInput: FunctionComponent<IProps> = ({
   label,
@@ -18,7 +19,9 @@ export const CustomInput: FunctionComponent<IProps> = ({
   onFocus
 }): JSX.Element => {
 
-  const [_type, setType] = useState<string>(type);
+  const [state, setState] = useState<IState>({
+    _type: type
+  });
 
   const Label = (): JSX.Element => {
     return (
@@ -38,10 +41,12 @@ export const CustomInput: FunctionComponent<IProps> = ({
   };
 
   const Eye = (): JSX.Element => {
+    const { _type } = state
+
     return (
       <div className={`w-10 flex items-center justify-center ${errorLabel ? "bg-red-500" : "bg-green-300"} text-white select-none cursor-pointer`}>
         {
-          _type === "text" ? <FiEye size={20} onClick={() => setType("password")} /> : <FiEyeOff size={20} onClick={() => setType("text")} />
+          _type === "text" ? <FiEye size={20} onClick={() => setState({ _type: "password" })} /> : <FiEyeOff size={20} onClick={() => setState({ _type: "text" })} />
         }
       </div>
     )
@@ -59,7 +64,7 @@ export const CustomInput: FunctionComponent<IProps> = ({
           name={name}
           value={value}
           placeholder={placeholder}
-          type={_type}
+          type={state._type}
           maxLength={maxLength}
           onChange={onChange}
           onFocus={onFocus}

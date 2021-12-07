@@ -19,7 +19,12 @@ export const SearchBar: FunctionComponent = (): JSX.Element => {
 
   const onSearch = (): void => {
     if (!state.search) return;
-    router.push(state.search);
+    router.push({
+      pathname: "/results",
+      query: {
+        search: state.search
+      }
+    });
   };
 
   return (

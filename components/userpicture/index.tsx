@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import Image from "next/image";
-import { IProps } from "./Iprops"
+import { IProps } from "./IProps"
 
 const UserPicture: FunctionComponent<IProps> = ({
     picture,

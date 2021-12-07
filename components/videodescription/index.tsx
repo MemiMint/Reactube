@@ -1,11 +1,16 @@
 import React, { FunctionComponent, useState } from "react";
 import { IProps } from "./IProps"
+import { IState } from "./Istate"
 
 export const VideoDescription: FunctionComponent<IProps> = ({
     description
 }): JSX.Element => {
 
-    const [showMore, setShowMore] = useState<boolean>(false);
+    const [state, setState] = useState<IState>({
+       showMore: false 
+    });
+
+    const { showMore } = state;
 
     return (
         <div className="w-full">
@@ -13,7 +18,7 @@ export const VideoDescription: FunctionComponent<IProps> = ({
                 {description}
             </div>
             <div className="mt-2">
-                <b className="text-sm text-gray-500 cursor-pointer" onClick={() => setShowMore(!showMore)} >{ showMore ? "Show Less" : "Show More" }</b>
+                <b className="text-sm text-gray-500 cursor-pointer" onClick={() => setState({ showMore: !showMore })} >{ showMore ? "Show Less" : "Show More" }</b>
             </div>
         </div>
     )
