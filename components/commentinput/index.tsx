@@ -48,7 +48,7 @@ const ResizableTextArea: FunctionComponent<IResizableTextArea> = ({
     return (
         <textarea
             rows={state.rows}
-            className="w-full overflow-none overscroll-none h-auto outline-none p-2 text-sm text-gray-600 placeholder-gray-400 font-medium border-b border-gray-300 resize-none focus:border-black"
+            className="w-full overflow-none overscroll-none h-auto outline-none p-2 text-sm bg-transparent text-gray-600 placeholder-gray-400 font-medium border-b border-gray-300 resize-none focus:border-black"
             placeholder="add a new comment"
             name="comment"
             value={value}

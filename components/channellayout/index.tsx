@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import { useUser } from "../../context";
 import { UserPicture } from "../userpicture"
 import { SecondaryLink } from "../links";
+import { TabLink } from "../links"
 
 export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
   const { id, picture, username } = useUser();
@@ -79,21 +79,15 @@ export const ChannelLayout: FunctionComponent = ({ children }): JSX.Element => {
     };
 
     const Tabs = (): JSX.Element => {
-      const router = useRouter();
-
       return (
         <div className="w-full mt-4 flex justify-between md:justify-start md:space-x-16 lg:space-x-16 lg:justify-start">
           {tabs.map((tab, index): JSX.Element => {
             return (
-              <a
+              <TabLink 
                 key={index}
                 href={tab.href}
-                className={`${
-                  router.asPath === tab.href ? "border-b-2 border-gray-500" : ""
-                } text-gray-500 font-medium text-sm px-2 py-2 md:text-lg lg:text-lg`}
-              >
-                {tab.text}
-              </a>
+                text={tab.text}
+              />
             );
           })}
         </div>

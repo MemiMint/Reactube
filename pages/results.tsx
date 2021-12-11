@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
+import { useRouter } from "next/router"
 import Head from "next/head";
 import { useUser } from "../context"
 import { Navbar } from "../components/navbar"
@@ -11,6 +12,7 @@ const Results: NextPage = (): JSX.Element => {
     const [description, setDescription] = useState<string>("Create Music Group, Inc. (en representación de 804569 Records DK); NirvanaDigitalPublishing, LatinAutor - SonyATV, UNIAO BRASILEIRA DE EDITORAS DE ")
 
     const user = useUser();
+    const router = useRouter();
 
     if (!user.picture) return <p>loading...</p>
 
@@ -63,7 +65,7 @@ const Results: NextPage = (): JSX.Element => {
     return (
         <>
             <Head>
-                <title>Search</title>
+                <title>{router.query.search}</title>
             </Head>
           <Navbar/>
           <LayoutVideoList

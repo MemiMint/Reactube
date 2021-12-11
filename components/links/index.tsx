@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { useRouter } from "next/router"
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -9,7 +10,7 @@ import {
   FaReddit
 } from "react-icons/fa";
 import { UserPicture } from "../userpicture"
-import { IProps, INotificationLinkProps, ISocialLinkProps } from "./IProps";
+import { IProps, INotificationLinkProps, ISocialLinkProps, IAccountSidebarLinkProps } from "./IProps";
 
 export const PrimaryLink: FunctionComponent<IProps> = ({
   href,
@@ -117,6 +118,44 @@ export const SocialLink: FunctionComponent<ISocialLinkProps> = ({
       <a className="flex flex-col items-center justify-center space-y-1 text-sm font-medium text-gray-600">
         {icon}
         <p>{social}</p>
+      </a>
+    </Link>
+  )
+}
+
+export const TabLink: FunctionComponent<IProps> = ({
+  href,
+  text
+}): JSX.Element => {
+  const router = useRouter();
+
+  return (
+    <Link href={href} >
+      <a
+        className={`${router.asPath === href ? "border-b-2 border-gray-500" : ""
+          } text-gray-500 font-medium text-sm px-2 py-2 md:text-lg lg:text-lg`}
+      >
+        {text}
+      </a>
+    </Link>
+  )
+}
+
+export const AccountSideBarLink: FunctionComponent<IAccountSidebarLinkProps> = ({
+  href,
+  leftIcon,
+  text
+}): JSX.Element => {
+  
+  const router = useRouter();
+
+  return (
+    <Link href={href} >
+      <a 
+        className={`w-full ${router.asPath === href ? "bg-green-300 text-white border-l-4 border-green-500" : "text-gray-500 hover:bg-gray-200"} flex items-center p-4 text-base font-medium space-x-2`} 
+      >
+        { leftIcon }
+        <p>{ text }</p>
       </a>
     </Link>
   )

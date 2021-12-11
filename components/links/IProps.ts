@@ -13,3 +13,7 @@ export interface INotificationLinkProps extends IProps {
 export interface ISocialLinkProps extends IProps {
   social: "Facebook" | "Instagram" | "Twitter" | "Discord" | "Reddit";
 }
+
+export interface IAccountSidebarLinkProps extends IProps {
+  depth?: number;
+}

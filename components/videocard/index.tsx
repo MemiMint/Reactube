@@ -111,7 +111,7 @@ export const VideoCard: FunctionComponent<IProps> = ({
               </div>
             </div>
           </div>
-          <div className="flex space-x-2">
+          <div className="mt-2 flex space-x-2">
             <div>
               <UserPicture
                 picture={channel.picture}

@@ -6,8 +6,7 @@ import { IProps } from "../components/videocard/Iprops";
 
 const fakeData: Array<IProps> = [
   {
-    thumbnail:
-      "https://i.ytimg.com/an_webp/rfscVS0vtbw/mqdefault_6s_480x270.webp?du=3000&sqp=CNjupowG&rs=AOn4CLAhW51Ttd5Vd9PoGSWQbJmnL4R2og",
+    thumbnail: "https://i.blogs.es/0ca5da/ambulo_polar_wide/1366_2000.jpg",
     title: "Build the best blog app with react!",
     date: "3 years ago",
     duration: "1:20:32",
@@ -19,8 +18,7 @@ const fakeData: Array<IProps> = [
     },
   },
   {
-    thumbnail:
-      "https://i.ytimg.com/an_webp/7o6m_TwVS9Y/mqdefault_6s.webp?du=3000&sqp=CIrlpowG&rs=AOn4CLAEGTDKw-QVjSWZFXcXsG-k75uCCQ",
+    thumbnail: "https://i.blogs.es/0ca5da/ambulo_polar_wide/1366_2000.jpg",
     title: "Mi madre se puso a llorar cuando me fui al atletico madrid",
     duration: "8:08",
     views: "553k",
@@ -33,8 +31,7 @@ const fakeData: Array<IProps> = [
     },
   },
   {
-    thumbnail:
-      "https://i.ytimg.com/an_webp/4ZTP_QpQkYk/mqdefault_6s.webp?du=3000&sqp=CMTtpowG&rs=AOn4CLCe3OKeB-P2uNjRh2ruk5-6wl8DeA",
+    thumbnail: "https://i.blogs.es/0ca5da/ambulo_polar_wide/1366_2000.jpg",
     title: "Los objetos mas raros del universo",
     duration: "11:03",
     views: "649k",
