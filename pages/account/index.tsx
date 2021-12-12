@@ -6,20 +6,22 @@ import { StatisticsCard, UploadVideoPanelCard, SubscribeCard, CustomizeChannelPa
 const Index: NextPage = (): JSX.Element => {
     return (
         <AccountLayout> 
-            <div className="" >
-                <h1 className="text-xl text-black font-medium" >Channel Panel</h1>
-            </div>
-            <div className="flex" >
-                <UploadVideoPanelCard />
-                <div>
-                    <StatisticsCard totalSubscribers={100} totalViews={975787} />
+            <div className="p-14">
+                <div className="" >
+                    <h1 className="text-xl text-black font-medium" >Channel Panel</h1>
                 </div>
-                <div>
-                    <SubscribeCard type="subscriptions" />
-                    <SubscribeCard type="subscribers" />
-                </div>
-                <div>
-                    <CustomizeChannelPanelCard />
+                <div className="flex" >
+                    <UploadVideoPanelCard />
+                    <div>
+                        <StatisticsCard totalSubscribers={100} totalViews={975787} />
+                    </div>
+                    <div>
+                        <SubscribeCard type="subscriptions" />
+                        <SubscribeCard type="subscribers" />
+                    </div>
+                    <div>
+                        <CustomizeChannelPanelCard />
+                    </div>
                 </div>
             </div>
         </AccountLayout>

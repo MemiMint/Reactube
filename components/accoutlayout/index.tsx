@@ -5,7 +5,7 @@ export const AccountLayout: FunctionComponent = ({ children }): JSX.Element => {
     return (
         <div className="flex w-screen h-screen bg-gray-100">
             <AccountSideBar />
-            <div className="w-full h-full p-14">
+            <div className="w-full h-full">
                 { children }
             </div>
         </div>
