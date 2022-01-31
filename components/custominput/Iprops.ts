@@ -10,7 +10,7 @@ export interface IProps {
   placeholder?: string;
   maxLength?: number;
   errorLabel?: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   displayEye?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onFocus?: (event?: React.FocusEvent<HTMLInputElement>) => void;

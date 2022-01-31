@@ -1,29 +1,58 @@
 import React from "react";
 import { NextPage } from "next";
-import Image from "next/image";
 import { AccountLayout } from "../../components/accoutlayout";
-import { stringShortener } from "../../utils/string-shortener"
+import { VideoTable } from "../../components/videotable";
+import { IVideoTableDataProps as IVideoProps } from "../../components/videotable/IProps";
+import { VideoDetailsModal } from "../../components/modals";
 
 const Content: NextPage = (): JSX.Element => {
-    return (
-        <AccountLayout>
-            <div className="w-full h-full bg-white">
-               <table className="w-full">
-                   <tr className="border-b border-gray-300" >
-                       <th>
-                           <input style={{width: 20, height: 20}} type="checkbox" />
-                       </th>
-                       <th>thumbnail</th>
-                       <th>title</th>
-                       <th>views</th>
-                       <th>comments</th>
-                       <th>date</th>
-                       <th>likes vs dislikes (%perc)</th>
-                   </tr>
-                </table> 
-            </div>
-        </AccountLayout>
-    )
-}
+  const fakeData: Array<IVideoProps> = [
+    {
+      thumbnail: "https://i.blogs.es/0ca5da/ambulo_polar_wide/1366_2000.jpg",
+      title: "Deathmetal",
+      views: 300,
+      comments: 109,
+      date: "20/02/2010",
+      likesDislikesPercentage: 67,
+    },
+    {
+      thumbnail: "https://i.blogs.es/0ca5da/ambulo_polar_wide/1366_2000.jpg",
+      title: "Deathmetal",
+      views: 300,
+      comments: 109,
+      date: "20/02/2010",
+      likesDislikesPercentage: 67,
+    },
+    {
+      thumbnail: "https://i.blogs.es/0ca5da/ambulo_polar_wide/1366_2000.jpg",
+      title: "Deathmetal",
+      views: 300,
+      comments: 109,
+      date: "20/02/2010",
+      likesDislikesPercentage: 67,
+    },
+    {
+      thumbnail: "https://i.blogs.es/0ca5da/ambulo_polar_wide/1366_2000.jpg",
+      title: "Deathmetal",
+      views: 300,
+      comments: 109,
+      date: "20/02/2010",
+      likesDislikesPercentage: 67,
+    },
+  ];
+
+  return (
+    <>
+      <AccountLayout>
+        <div className="w-full h-full bg-white">
+          <div className="p-14">
+            <h1 className="text-black font-medium text-lg">Channel Content</h1>
+          </div>
+          <VideoTable videos={fakeData} />
+        </div>
+      </AccountLayout>
+    </>
+  );
+};
 
 export default Content;

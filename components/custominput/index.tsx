@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useState } from "react";
 import Link from "next/link";
-import { FiEye, FiEyeOff } from "react-icons/fi"
+import { FiEye, FiEyeOff } from "react-icons/fi";
 import { IProps } from "./Iprops";
-import { IState } from "./IState"
+import { IState } from "./IState";
 
 export const CustomInput: FunctionComponent<IProps> = ({
   label,
@@ -16,22 +16,30 @@ export const CustomInput: FunctionComponent<IProps> = ({
   maxLength,
   displayEye,
   onChange,
-  onFocus
+  onFocus,
 }): JSX.Element => {
-
   const [state, setState] = useState<IState>({
-    _type: type
+    _type: type,
   });
 
   const Label = (): JSX.Element => {
     return (
       <div className="flex items-center justify-between mb-1">
         {" "}
-        <label htmlFor="username" className={`text-xs ${errorLabel ? "text-red-500" : "text-gray-400"} font-semibold`}>{label}</label>
-        {
-          errorLabel && <label htmlFor="error" className="text-xs text-red-500 font-semibold">{errorLabel}</label>
-        }
-        {(link && !errorLabel) && (
+        <label
+          htmlFor="username"
+          className={`text-xs ${
+            errorLabel ? "text-red-500" : "text-gray-400"
+          } font-semibold`}
+        >
+          {label}
+        </label>
+        {errorLabel && (
+          <label htmlFor="error" className="text-xs text-red-500 font-semibold">
+            {errorLabel}
+          </label>
+        )}
+        {link && !errorLabel && (
           <Link href={link.href}>
             <a className="text-xs text-green-300 font-semibold">{link.text}</a>
           </Link>
@@ -41,24 +49,48 @@ export const CustomInput: FunctionComponent<IProps> = ({
   };
 
   const Eye = (): JSX.Element => {
-    const { _type } = state
+    const { _type } = state;
 
     return (
-      <div className={`w-10 flex items-center justify-center ${errorLabel ? "bg-red-500" : "bg-green-300"} text-white select-none cursor-pointer`}>
-        {
-          _type === "text" ? <FiEye size={20} onClick={() => setState({ _type: "password" })} /> : <FiEyeOff size={20} onClick={() => setState({ _type: "text" })} />
-        }
+      <div
+        className={`w-10 flex items-center justify-center ${
+          errorLabel ? "bg-red-500" : "bg-green-300"
+        } text-white select-none cursor-pointer`}
+      >
+        {_type === "text" ? (
+          <FiEye size={20} onClick={() => setState({ _type: "password" })} />
+        ) : (
+          <FiEyeOff size={20} onClick={() => setState({ _type: "text" })} />
+        )}
       </div>
-    )
-  }
+    );
+  };
+
+  const Icon = (): JSX.Element => {
+    return (
+      <>
+        {icon && (
+          <div
+            className={`w-10 flex items-center justify-center ${
+              errorLabel ? "bg-red-500" : "bg-green-300"
+            } text-white`}
+          >
+            {icon}
+          </div>
+        )}
+      </>
+    );
+  };
 
   return (
     <div className="w-full">
       <Label />
-      <div className={`flex w-full h-10 border-2 ${errorLabel ? "border-red-500" : "border-green-300"}`}>
-        <div className={`w-10 flex items-center justify-center ${errorLabel ? "bg-red-500" : "bg-green-300"} text-white`}>
-          {icon}
-        </div>
+      <div
+        className={`flex w-full h-10 border-2 ${
+          errorLabel ? "border-red-500" : "border-green-300"
+        }`}
+      >
+        <Icon />
         <input
           className="w-full px-2 text-sm text-gray-400 font-semibold outline-none"
           name={name}
@@ -69,10 +101,9 @@ export const CustomInput: FunctionComponent<IProps> = ({
           onChange={onChange}
           onFocus={onFocus}
         />
-        {
-          displayEye && <Eye />
-        }
+        {displayEye && <Eye />}
       </div>
     </div>
   );
 };
+
